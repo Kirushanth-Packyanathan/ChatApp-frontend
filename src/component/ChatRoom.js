@@ -7,6 +7,7 @@ const ChatRoom = () => {
   const [privateChats, setPrivateChats] = useState(new Map());
   const [publicChats, setPublicChats] = useState([]);
   const [tab, setTab] = useState("CHATROOM");
+
   const [userData, setUserData] = useState({
     username: "",
     receivername: "",
@@ -16,7 +17,7 @@ const ChatRoom = () => {
   useEffect(() => {
     console.log(userData);
   }, [userData]);
-
+  
   const connect = () => {
     let Sock = new SockJS("http://localhost:8080/ws");
     stompClient = over(Sock);
@@ -32,7 +33,7 @@ const ChatRoom = () => {
     );
     userJoin();
   };
-
+// hello
   const userJoin = () => {
     var chatMessage = {
       senderName: userData.username,
@@ -57,7 +58,6 @@ const ChatRoom = () => {
         console.log("Unknown message status:", payloadData.status);
     }
   };
-  
 
   const onPrivateMessage = (payload) => {
     console.log(payload);
